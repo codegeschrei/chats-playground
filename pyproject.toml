@@ -14,6 +14,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mkdocs>=1.6.1",
+    "mkdocs-include-markdown-plugin>=7.1.5",
     "mkdocstrings-python>=1.16.10",
     "pytest>=8.3.5",
     "ruff>=0.11.8",

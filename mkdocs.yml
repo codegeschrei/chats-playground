@@ -3,5 +3,6 @@ site_name: My Chat Docs
 plugins:
 - mkdocstrings:
     default_handler: python
+- include-markdown
 
 theme: readthedocs
