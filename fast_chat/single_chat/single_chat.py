@@ -1,5 +1,7 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
+from websockets.exceptions import ConnectionClosed
+
 from .settings import APP_NAME
 
 # Set up app
@@ -53,7 +55,11 @@ async def get():
 async def websocket_endpoint(websocket: WebSocket):
     # create a websocket for the client
     await websocket.accept()
-    while True:
-        # handle incoming messages and send a message back to acknowledge it
-        data = await websocket.receive_text()
-        await websocket.send_text(f"Received message: {data}")
+    try:
+        while True:
+            # handle incoming messages and send a message back to acknowledge it
+            data = await websocket.receive_text()
+            await websocket.send_text(f"Received message: {data}")
+    except (WebSocketDisconnect, ConnectionClosed):
+        # catch disconnect errors
+        print("Shutting down")
