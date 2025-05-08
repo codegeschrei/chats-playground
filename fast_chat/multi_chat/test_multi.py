@@ -6,6 +6,7 @@ from .multi_chat import app
 client = TestClient(app)
 manager = ConnectionManager()
 
+
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200

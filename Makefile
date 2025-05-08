@@ -30,6 +30,9 @@ ruff: ## run ruff
 ruff-fix: ## run ruff and fix issues
 	uv run ruff check --fix
 
+format: ## format the code with ruff
+	uv run ruff format .
+
 build-docs: ## build the docs
 	uv run mkdocs build
 

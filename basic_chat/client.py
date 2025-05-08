@@ -33,7 +33,7 @@ class Client:
             message = input()
             if self.username:
                 message = self.username + ": " + message
-            self.client_socket.sendall(message.encode('utf-8'))
+            self.client_socket.sendall(message.encode("utf-8"))
 
 
 if __name__ == "__main__":

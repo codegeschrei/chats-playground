@@ -1,1 +1,1 @@
-APP_NAME="FastChat"
+APP_NAME = "FastChat"

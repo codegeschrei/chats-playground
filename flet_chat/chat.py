@@ -116,10 +116,7 @@ class ChatMessage(ft.Row):
         opacity = OPACITY[hash(user) % len(OPACITY)]
         main_color = COLORS[hash(user) % len(COLORS)]
 
-        color = ft.Colors.with_opacity(
-            opacity,
-            main_color
-        )
+        color = ft.Colors.with_opacity(opacity, main_color)
         return color
 
 
@@ -183,10 +180,7 @@ def chat(page: ft.Page):
         modal=True,
         title=ft.Text("Welcome!"),
         content=ft.Column([user_name], tight=True),
-        actions=[ft.ElevatedButton(
-            text="Join chat",
-            on_click=join_click
-            )],
+        actions=[ft.ElevatedButton(text="Join chat", on_click=join_click)],
     )
 
     # 'welcome' button - displayed at the start of the chat
@@ -197,9 +191,8 @@ def chat(page: ft.Page):
         icon="waving_hand_outlined",
         icon_color="black",
         style=ft.ButtonStyle(padding=10),
-        on_click=lambda e: page.open(usr)
+        on_click=lambda e: page.open(usr),
     )
-
 
     # add message broadcasting
     def on_message(message: Message):
@@ -213,7 +206,6 @@ def chat(page: ft.Page):
 
     # subscribe the user to receive messages by broadcast system (pubsub)
     page.pubsub.subscribe(on_message)
-
 
     def send_click(e):
         # the user id will be the session id for now
@@ -229,16 +221,16 @@ def chat(page: ft.Page):
         new_message.value = ""
         page.update()
 
-
-
     # view for the main page
     main_view = ft.View(
         "/",
         [
             ft.Row(
-                [welcome_button,],
+                [
+                    welcome_button,
+                ],
                 alignment=ft.MainAxisAlignment.CENTER,
-                )
+            )
         ],
     )
 
@@ -256,22 +248,14 @@ def chat(page: ft.Page):
     )
 
     # send button for sending a message
-    send_button = ft.ElevatedButton(
-        "Send",
-        tooltip="Send a message.",
-        icon=ft.Icons.ROCKET,
-        on_click=send_click
-    )
+    send_button = ft.ElevatedButton("Send", tooltip="Send a message.", icon=ft.Icons.ROCKET, on_click=send_click)
 
     # view for the chat page
     chat_view = ft.View(
         "/chat",
-        [chat,
-            ft.Row(
-                [
-                    new_message,
-                    send_button
-                ]),
+        [
+            chat,
+            ft.Row([new_message, send_button]),
         ],
     )
 

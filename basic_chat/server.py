@@ -43,7 +43,6 @@ class Server:
         self.server_socket.listen(5)
         print(f"Listening for new connections on {host}:{port}")
 
-
     def handle_client(self, client_socket: socket.socket):
         """
         Continuously receive data from clients
@@ -62,14 +61,13 @@ class Server:
                 # empty data == client disconnected
                 break
             # read data
-            message = data.decode('utf-8')
+            message = data.decode("utf-8")
             # output message
             print(message)
 
         # close socket and remove client with disconnect
         client_socket.close()
         self.clients.remove(client_socket)
-
 
     def run(self):
         """
@@ -83,10 +81,7 @@ class Server:
                 self.clients.append(client_socket)
                 print(f"New established connection from {client_address}")
                 # new thread for new client
-                client_handler = threading.Thread(
-                    target=self.handle_client,
-                    args=(client_socket,)
-                )
+                client_handler = threading.Thread(target=self.handle_client, args=(client_socket,))
                 client_handler.start()
         finally:
             # close the connection
