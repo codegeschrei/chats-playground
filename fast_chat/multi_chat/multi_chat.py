@@ -50,13 +50,13 @@ manager = ConnectionManager()
 
 
 @app.get("/")
-async def get():
+async def get() -> HTMLResponse:
     # use the root as main url for the chat and return the html from above
     return HTMLResponse(html)
 
 
 @app.websocket("/ws/{client_id}")
-async def websocket_endpoint(websocket: WebSocket, client_id: int):
+async def websocket_endpoint(websocket: WebSocket, client_id: int) -> None:
     # create a websocket for each client
     await manager.connect(websocket)
     await manager.broadcast(f"#{client_id} joined the Chat.")

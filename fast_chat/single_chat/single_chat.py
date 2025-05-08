@@ -46,13 +46,13 @@ html = """
 
 
 @app.get("/")
-async def get():
+async def get() -> HTMLResponse:
     # use the root as main url for the chat and return the html from above
     return HTMLResponse(html)
 
 
 @app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
+async def websocket_endpoint(websocket: WebSocket) -> None:
     # create a websocket for the client
     await websocket.accept()
     try:

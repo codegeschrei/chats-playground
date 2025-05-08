@@ -27,6 +27,7 @@ python_functions = "test_*"
 [tool.ruff]
 # Set the maximum line length to 119.
 line-length = 119
+exclude = ["test_*.py"]
 
 [tool.ruff.lint]
 select = [
@@ -38,4 +39,5 @@ select = [
     "FAST", # fastAPI
     #"S", # flake8-bandit
     "C90", # mccabe
+    "ANN", # flake8-annotations
     ]

@@ -7,11 +7,11 @@ class ConnectionManager:
 
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # keep track of all active connections
         self.active_connections: list[WebSocket] = []
 
-    async def connect(self, websocket: WebSocket):
+    async def connect(self, websocket: WebSocket) -> None:
         """
         expects a websocket to establish a connection
 
@@ -23,7 +23,7 @@ class ConnectionManager:
         await websocket.accept()
         self.active_connections.append(websocket)
 
-    def disconnect(self, websocket: WebSocket):
+    def disconnect(self, websocket: WebSocket) -> None:
         """
         Expects a websocket to disconnect a client by removing them
         from the client list
@@ -35,7 +35,7 @@ class ConnectionManager:
         """
         self.active_connections.remove(websocket)
 
-    async def broadcast(self, message: str):
+    async def broadcast(self, message: str) -> None:
         """
         Broadcast incoming messages to all clients
 

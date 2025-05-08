@@ -16,13 +16,13 @@ class Client:
         A username for the client.
     """
 
-    def __init__(self, host: str, port: int, username: str):
+    def __init__(self, host: str, port: int, username: str) -> None:
         # connect to server
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client_socket.connect((host, port))
         self.username = username
 
-    def run(self):
+    def run(self) -> None:
         """
         Wait for new messages and send them.
 

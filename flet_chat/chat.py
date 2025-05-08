@@ -39,7 +39,7 @@ class Message:
         The type of the message - login message, chat message
     """
 
-    def __init__(self, user: str, text: str, message_type: str):
+    def __init__(self, user: str, text: str, message_type: str) -> None:
         self.user = user
         self.text = text
         self.message_type = message_type
@@ -55,7 +55,7 @@ class ChatMessage(ft.Row):
         The message object.
     """
 
-    def __init__(self, message: Message):
+    def __init__(self, message: Message) -> None:
         super().__init__()
         # display message on the left side
         self.vertical_alignment = ft.CrossAxisAlignment.START
@@ -120,7 +120,7 @@ class ChatMessage(ft.Row):
         return color
 
 
-def chat(page: ft.Page):
+def chat(page: ft.Page) -> None:
     """
     Create a user specific color and opacity for an avatar.
 
@@ -152,7 +152,7 @@ def chat(page: ft.Page):
     )
 
     # click event for joining the chat
-    def join_click(e):
+    def join_click(e: ft.RouteChangeEvent) -> None:
         # make sure that a user name is given
         if not user_name.value:
             user_name.error_text = "Please provide a name!"
@@ -195,7 +195,7 @@ def chat(page: ft.Page):
     )
 
     # add message broadcasting
-    def on_message(message: Message):
+    def on_message(message: Message) -> None:
         # differentiate between a chat message and the initial login message to set a user name
         if message.message_type == "chat_message":
             m = ChatMessage(message)
@@ -207,7 +207,7 @@ def chat(page: ft.Page):
     # subscribe the user to receive messages by broadcast system (pubsub)
     page.pubsub.subscribe(on_message)
 
-    def send_click(e):
+    def send_click(e: ft.RouteChangeEvent) -> None:
         # the user id will be the session id for now
         # broadcast the current message in the text field
         page.pubsub.send_all(
@@ -260,7 +260,7 @@ def chat(page: ft.Page):
     )
 
     # add routing for initial page and chat page
-    def route_change(e):
+    def route_change(e: ft.RouteChangeEvent) -> None:
         page.views.clear()
         # add the main welcome page view
         page.views.append(main_view)

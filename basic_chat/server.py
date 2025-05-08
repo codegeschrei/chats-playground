@@ -15,7 +15,7 @@ class Server:
         The port to use to connect the server.
     """
 
-    def __init__(self, host, port):
+    def __init__(self, host: str, port: int) -> None:
         # keep track of all clients
         self.clients = []
         # server config - use IPv4 and TCP
@@ -43,7 +43,7 @@ class Server:
         self.server_socket.listen(5)
         print(f"Listening for new connections on {host}:{port}")
 
-    def handle_client(self, client_socket: socket.socket):
+    def handle_client(self, client_socket: socket.socket) -> None:
         """
         Continuously receive data from clients
         Display incoming messages.
@@ -69,7 +69,7 @@ class Server:
         client_socket.close()
         self.clients.remove(client_socket)
 
-    def run(self):
+    def run(self) -> None:
         """
         Wait for incoming connections and add them to a client list.
         Make a new thread for each client and pass on the data to handle_client().
