@@ -70,6 +70,3 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
         # disconnect the socket when a connection is closed
         manager.disconnect(websocket)
         await manager.broadcast(f"#{client_id} left the chat")
-
-
-

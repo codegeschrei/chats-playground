@@ -60,6 +60,6 @@ async def websocket_endpoint(websocket: WebSocket):
             # handle incoming messages and send a message back to acknowledge it
             data = await websocket.receive_text()
             await websocket.send_text(f"Received message: {data}")
-    except (WebSocketDisconnect, ConnectionClosed):
+    except(WebSocketDisconnect, ConnectionClosed):
         # catch disconnect errors
         print("Shutting down")
